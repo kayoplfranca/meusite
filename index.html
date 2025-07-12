@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kayo Franca - Currículo</title>
+    <!-- Adicionando Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        /* Modo escuro */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .navbar {
+            background: #2d2d2d;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        body.dark-mode .navbar-title {
+            color: #ecf0f1;
+        }
+
+        .navbar-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .controls-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .controls-container {
+            background: rgba(45, 45, 45, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #languageSelect {
+            padding: 0.5rem;
+            border-radius: 20px;
+            border: none;
+            background: #f0f0f0;
+            color: #333;
+            cursor: pointer;
+            font-weight: 500;
+            appearance: none;
+            padding-right: 2rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 16px 12px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode #languageSelect {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23e0e0e0' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        }
+
+        .theme-toggle {
+            background: transparent;
+            color: #333;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #3498db;
+            opacity: 0.1;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover::before {
+            transform: scale(1);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .theme-toggle {
+            color: #e0e0e0;
+        }
+
+        .divider {
+            width: 1px;
+            height: 24px;
+            background: #ddd;
+        }
+
+        body.dark-mode .divider {
+            background: #555;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 2rem 2rem;
+        }
+
+        /* Cabeçalho */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-mode .header h1 {
+            color: #ecf0f1;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        body.dark-mode .header .subtitle {
+            color: #74b9ff;
+        }
+
+        /* Foto do perfil */
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 1.5rem auto;
+            display: block;
+            border: 4px solid #3498db;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .profile-photo {
+            border-color: #74b9ff;
+        }
+
+        /* Social links */
+        .social {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social a {
+            color: #3498db;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode .social a {
+            color: #74b9ff;
+            border-color: #74b9ff;
+        }
+
+        body.dark-mode .social a:hover {
+            background: #74b9ff;
+            color: #1a1a1a;
+        }
+
+        /* Seções */
+        .section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .section {
+            background: #2d2d2d;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        body.dark-mode .section h2 {
+            color: #ecf0f1;
+            border-bottom-color: #74b9ff;
+        }
+
+        .section h3 {
+            color: #3498db;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-mode .section h3 {
+            color: #74b9ff;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section li {
+            background: #f8f9fa;
+            margin-bottom: 0.5rem;
+            padding: 1rem;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        /* Efeito hover nas competências */
+        .skills-list li:hover,
+        .education-list li:hover,
+        .certifications-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            background: #e9f5ff;
+        }
+
+        body.dark-mode .skills-list li:hover,
+        body.dark-mode .education-list li:hover,
+        body.dark-mode .certifications-list li:hover {
+            background: #3d4a56;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .section li {
+            background: #3a3a3a;
+            border-left-color: #74b9ff;
+        }
+
+        .section strong {
+            color: #2c3e50;
+        }
+
+        body.dark-mode .section strong {
+            color: #ecf0f1;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 120px 1rem 1rem;
+            }
+
+            .navbar {
+                padding: 0.8rem 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .navbar-controls {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .social {
+                gap: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Menu hambúrguer */
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+        }
+
+        /* Responsividade para telas pequenas */
+        @media (max-width: 600px) {
+            .navbar-controls {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                right: 1rem;
+                background: #fff;
+                border-radius: 12px;
+                padding: 1rem;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-20px);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+                z-index: 1000;
+            }
+
+            body.dark-mode .navbar-controls {
+                background: #2d2d2d;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .navbar-controls.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .controls-container {
+                flex-direction: column;
+                background: transparent;
+                box-shadow: none;
+                padding: 0;
+                gap: 1rem;
+            }
+
+            .divider {
+                width: 100%;
+                height: 1px;
+            }
+
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-title" data-i18n="title">Kayo Patryc Franca - Currículo</div>
+
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="navbar-controls" id="navbarControls">
+            <div class="controls-container">
+                <select id="languageSelect" aria-label="Selecionar idioma">
+                    <option value="pt">🇧🇷 Português</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="es">🇪🇸 Español</option>
+                </select>
+
+                <div class="divider"></div>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <h1>Kayo Patryc Franca</h1>
+            <!-- Imagem atualizada -->
+            <img src="https://i.imgur.com/uJA5plI.png" class="profile-photo">
+            <p class="subtitle" data-i18n="subtitle">Analista de Infraestrutura • SRE • DevOps 👨🏾‍💻</p>
+
+            <div class="social">
+                <a href="https://github.com/kayopfranca" target="_blank">
+                    <i class="fab fa-github"></i> <span data-i18n="github">GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/kayopfranca/" target="_blank">
+                    <i class="fab fa-linkedin"></i> <span data-i18n="linkedin">LinkedIn</span>
+                </a>
+                <a href="mailto:kayo.ti@outlook.com">
+                    <i class="fas fa-envelope"></i> <span data-i18n="email">Email</span>
+                </a>
+                <a href="tel:+5562984144790">
+                    <i class="fas fa-phone"></i> <span data-i18n="phone">Telefone</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Sobre mim -->
+        <section class="section">
+            <h2 data-i18n="about-title">Sobre mim</h2>
+            <p data-i18n="about-p1">
+                Sou profissional de tecnologia com 10 anos de experiência em TI, redes e suporte técnico, atuando com
+                foco em ambientes Linux, monitoramento, automação e sustentação de sistemas críticos. Tenho vivência em
+                empresas de tecnologia, mobilidade urbana e software jurídico, apoiando tanto a operação quanto a
+                evolução da infraestrutura.
+            </p>
+            <p data-i18n="about-p2">
+                Atualmente trabalho com sustentação e monitoramento de sistemas de bilhetagem eletrônica e controle
+                semafórico, administrando servidores Linux e Windows, containers Docker, bancos de dados Oracle,
+                automações em Shell Script e Python, além de ferramentas como Zabbix, GitLab, Kafka, entre outras.
+            </p>
+            <p data-i18n="about-p3">
+                Formado em Tecnologia em Redes de Computadores pelo SENAI FATESG, também possuo certificações como o
+                DevOps Essentials Professional Certificate (DEPC) e Oracle Cloud Infrastructure Foundations Associate.
+                Atualmente estudando para certificações Oracle, AWS e Kubernetes.
+            </p>
+        </section>
+
+        <!-- Competências -->
+        <section class="section">
+            <h2 data-i18n="skills-title">Principais Competências</h2>
+            <ul class="skills-list">
+                <li data-i18n="skill-1">Linux | Windows Server | Redes</li>
+                <li data-i18n="skill-2">Docker | Git | GitLab CI/CD</li>
+                <li data-i18n="skill-3">Zabbix | Grafana | Apache | Nginx</li>
+                <li data-i18n="skill-4">Shell Script | Python | PL/SQL</li>
+                <li data-i18n="skill-5">Oracle DB | API RESTful | Kafka</li>
+                <li data-i18n="skill-6">Kanban | Scrum | Documentação técnica</li>
+            </ul>
+        </section>
+
+        <!-- Experiência -->
+        <section class="section">
+            <h2 data-i18n="experience-title">Experiência Profissional</h2>
+
+            <h3 data-i18n="job1-title">Analista de Infraestrutura e Suporte Pleno – Dataprom (mai/2025 – momento)</h3>
+            <p data-i18n="job1-desc">
+                Administração de servidores Linux e Windows Server em múltiplas versões; análise, monitoramento e
+                correção de incidentes em produção; implementação de automações com Bash Script e Python; suporte a
+                times de desenvolvimento e práticas SRE; extração de dados em Oracle; monitoramento com Zabbix.
+            </p>
+
+            <h3 data-i18n="job2-title">Analista de Infraestrutura e Suporte Júnior – Dataprom (fev/2022 – abr/2025)</h3>
+            <p data-i18n="job2-desc">
+                Gerenciamento de servidores Linux e Windows em ambiente corporativo; execução de backups; suporte
+                técnico; análise de desempenho e incidentes com monitoramento; elaboração de documentação.
+            </p>
+
+            <h3 data-i18n="job3-title">Analista de Suporte e Infraestrutura II – Oobj (dez/2020 – fev/2022)</h3>
+            <p data-i18n="job3-desc">
+                Suporte a ambientes Windows e Linux, monitoramento com Zabbix e Grafana, integração com APIs RESTful
+                para ERPs, orientação técnica a novos colaboradores, documentação técnica.
+            </p>
+
+            <h3 data-i18n="job4-title">Analista de Infraestrutura de TI – Aviso Urgente (abr/2018 – dez/2020)</h3>
+            <p data-i18n="job4-desc">
+                Administração de servidores Windows Server e Linux; administração de redes locais e cloud; monitoramento
+                com Zabbix e Grafana; configuração de segurança, Google Workspace; suporte a equipes de desenvolvimento.
+            </p>
+
+            <h3 data-i18n="job5-title">Assistente de TI – Grupo empZ (fev/2016 – mar/2018)</h3>
+            <p data-i18n="job5-desc">
+                Suporte N1 e N2, administração de servidores Windows (AD, DNS, DHCP, GPO), monitoramento com Zabbix e
+                UniFi, administração do ERP Protheus e antivírus McAfee ePO, documentação técnica.
+            </p>
+
+            <h3 data-i18n="job6-title">Estagiário de Implantação de Redes – Telemont (mar/2014 – dez/2015)</h3>
+            <p data-i18n="job6-desc">
+                Apoio na instalação e manutenção de redes estruturadas; documentação técnica; suporte básico em hardware
+                e software; atualização de inventário; atendimento presencial.
+            </p>
+
+            <h3 data-i18n="job7-title">Analista de Suporte Técnico – Tahto (mar/2012 – jan/2014)</h3>
+            <p data-i18n="job7-desc">
+                Suporte a clientes em internet e telefonia; configuração de serviços de rede, modens e roteadores;
+                análise de problemas em sistema de chamados; suporte remoto e elaboração de scripts.
+            </p>
+        </section>
+
+        <!-- Formação Acadêmica -->
+        <section class="section">
+            <h2 data-i18n="education-title">Formação Acadêmica</h2>
+            <ul class="education-list">
+                <li><strong>Graduação em Redes de Computadores</strong> - SENAI FATESG (02/2018
+                    a 07/2020)</li>
+                <li><strong>Análise e Desenvolvimento de Sistemas</strong> - PUC GO (06/2015 a 12/2017)</li>
+                <li><strong>Técnico em Redes & Telecomunicações</strong> - SENAI FATESG (01/2015 a
+                    12/2015)</li>
+                <li><strong>Técnico em Manut. de Computadores</strong> - Fund. Bahiana de Engenharia (01 a
+                    06/2010)</li>
+                <li><strong>Técnico em Informática</strong> - Fund. Bahiana de Engenharia (07/2009 a 12/2009)</li>
+            </ul>
+        </section>
+
+        <!-- Cursos e Certificações -->
+        <section class="section">
+            <h2 data-i18n="certifications-title">Cursos e Certificações</h2>
+            <ul class="certifications-list">
+                <li><strong>Oracle Cloud Infrastructure Foundations Associate</strong> -
+                    Oracle (05/2025 a 05/2027)</li>
+                <li><strong>Kubernetes Essentials LFS158</strong> - The Linux Foundation (04/2025)</li>
+                <li><strong>DevOps Essentials Professional Certificate (DEPC)</strong> - CertiProf
+                    (08/2019)</li>
+        </section>
+
+        <!-- Idiomas -->
+        <section class="section">
+            <h2 data-i18n="languages-title">Idiomas</h2>
+            <ul class="skills-list">
+                <li><strong>Inglês</strong> - Intermediário B1 🇺🇸</li>
+                <li><strong>Espanhol</strong> - Intermediário 🇪🇸</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // Dicionário de traduções
+        const translations = {
+            pt: {
+                title: "Kayo Patryc Franca - Currículo",
+                subtitle: "Analista de Infraestrutura • SRE • DevOps 👨🏾‍💻",
+                github: "GitHub",
+                linkedin: "LinkedIn",
+                email: "Email",
+                phone: "Telefone",
+                "about-title": "Sobre mim",
+                "about-p1": "Sou profissional de tecnologia com 10 anos de experiência em TI, redes e suporte técnico, atuando com foco em ambientes Linux, monitoramento, automação e sustentação de sistemas críticos. Tenho vivência em empresas de tecnologia, mobilidade urbana e software jurídico, apoiando tanto a operação quanto a evolução da infraestrutura.",
+                "about-p2": "Atualmente trabalho com sustentação e monitoramento de sistemas de bilhetagem eletrônica e controle semafórico, administrando servidores Linux e Windows, containers Docker, bancos de dados Oracle, automações em Shell Script e Python, além de ferramentas como Zabbix, GitLab, Kafka, entre outras.",
+                "about-p3": "Formado em Tecnologia em Redes de Computadores pelo SENAI FATESG, também possuo certificações como o DevOps Essentials Professional Certificate (DEPC) e Oracle Cloud Infrastructure Foundations Associate. Atualmente estudando para certificações Oracle, AWS e Kubernetes.",
+                "skills-title": "Principais Competências",
+                "skill-1": "Linux | Windows Server | Redes",
+                "skill-2": "Docker | Git | GitLab CI/CD",
+                "skill-3": "Zabbix | Grafana | Apache | Nginx",
+                "skill-4": "Shell Script | Python | PL/SQL",
+                "skill-5": "Oracle DB | API RESTful | Kafka",
+                "skill-6": "Kanban | Scrum | Documentação técnica",
+                "experience-title": "Experiência Profissional",
+                "education-title": "Formação Acadêmica",
+                "languages-title": "Idiomas",
+                "certifications-title": "Cursos e Certificações",
+                "studying-title": "Estudando para",
+                "job1-title": "Analista de Infraestrutura e Suporte Pleno – Dataprom (mai/2025 – momento)",
+                "job1-desc": "Administração de servidores Linux e Windows Server em múltiplas versões; análise, monitoramento e correção de incidentes em produção; implementação de automações com Bash Script e Python; suporte a times de desenvolvimento e práticas SRE; extração de dados em Oracle; monitoramento com Zabbix.",
+                "job2-title": "Analista de Infraestrutura e Suporte Júnior – Dataprom (fev/2022 – abr/2025)",
+                "job2-desc": "Gerenciamento de servidores Linux e Windows em ambiente corporativo; execução de backups; suporte técnico; análise de desempenho e incidentes com monitoramento; elaboração de documentação.",
+                "job3-title": "Analista de Suporte e Infraestrutura II – Oobj (dez/2020 – fev/2022)",
+                "job3-desc": "Suporte a ambientes Windows e Linux, monitoramento com Zabbix e Grafana, integração com APIs RESTful para ERPs, orientação técnica a novos colaboradores, documentação técnica.",
+                "job4-title": "Analista de Infraestrutura de TI – Aviso Urgente (abr/2018 – dez/2020)",
+                "job4-desc": "Administração de servidores Windows Server e Linux; administração de redes locais e cloud; monitoramento com Zabbix e Grafana; configuração de segurança, Google Workspace; suporte a equipes de desenvolvimento.",
+                "job5-title": "Assistente de TI – Grupo empZ (fev/2016 – mar/2018)",
+                "job5-desc": "Suporte N1 e N2, administração de servidores Windows (AD, DNS, DHCP, GPO), monitoramento com Zabbix e UniFi, administração do ERP Protheus e antivírus McAfee ePO, documentação técnica.",
+                "job6-title": "Estagiário de Implantação de Redes – Telemont (mar/2014 – dez/2015)",
+                "job6-desc": "Apoio na instalação e manutenção de redes estruturadas; documentação técnica; suporte básico em hardware e software; atualização de inventário; atendimento presencial.",
+                "job7-title": "Analista de Suporte Técnico – Tahto (mar/2012 – jan/2014)",
+                "job7-desc": "Suporte a clientes em internet e telefonia; configuração de serviços de rede, modens e roteadores; análise de problemas em sistema de chamados; suporte remoto e elaboração de scripts.",
+                "theme-dark": "🌙 Modo Escuro",
+                "theme-light": "☀️ Modo Claro"
+            },
+            en: {
+                title: "Kayo Patryc Franca - Resume",
+                subtitle: "Infrastructure Analyst • SRE • DevOps 👨🏾‍💻",
+                github: "GitHub",
+                linkedin: "LinkedIn",
+                email: "Email",
+                phone: "Phone",
+                "about-title": "About Me",
+                "about-p1": "I am a technology professional with 10 years of experience in IT, networking and technical support, working with focus on Linux environments, monitoring, automation and critical systems maintenance. I have experience in technology companies, urban mobility and legal software, supporting both operation and infrastructure evolution.",
+                "about-p2": "Currently working with support and monitoring of electronic ticketing systems and traffic light control, managing Linux and Windows servers, Docker containers, Oracle databases, Shell Script and Python automations, plus tools like Zabbix, GitLab, Kafka, among others.",
+                "about-p3": "Graduated in Computer Networks Technology from SENAI FATESG, I also have certifications such as DevOps Essentials Professional Certificate (DEPC) and Oracle Cloud Infrastructure Foundations Associate. Currently studying for Oracle, AWS and Kubernetes certifications.",
+                "skills-title": "Key Skills",
+                "skill-1": "Linux | Windows Server | Networks",
+                "skill-2": "Docker | Git | GitLab CI/CD",
+                "skill-3": "Zabbix | Grafana | Apache | Nginx",
+                "skill-4": "Shell Script | Python | PL/SQL",
+                "skill-5": "Oracle DB | RESTful API | Kafka",
+                "skill-6": "Kanban | Scrum | Technical Documentation",
+                "experience-title": "Professional Experience",
+                "education-title": "Education",
+                "languages-title": "Languages",
+                "certifications-title": "Courses and Certifications",
+                "studying-title": "Currently studying for",
+                "job1-title": "Infrastructure and Support Analyst - Mid-Level – Dataprom (May/2025 – Present)",
+                "job1-desc": "Administration of Linux and Windows Server in multiple versions; analysis, monitoring and correction of production incidents; implementation of automations with Bash Script and Python; support to development teams and SRE practices; data extraction in Oracle; monitoring with Zabbix.",
+                "job2-title": "Infrastructure and Support Analyst - Junior – Dataprom (Feb/2022 – Apr/2025)",
+                "job2-desc": "Linux and Windows server management in corporate environment; backup execution; technical support; performance analysis and incident monitoring; technical documentation elaboration.",
+                "job3-title": "Support and Infrastructure Analyst II – Oobj (Dec/2020 – Feb/2022)",
+                "job3-desc": "Support for Windows and Linux environments, monitoring with Zabbix and Grafana, integration with RESTful APIs for ERPs, technical guidance to new employees, technical documentation.",
+                "job4-title": "IT Infrastructure Analyst – Aviso Urgente (Apr/2018 – Dec/2020)",
+                "job4-desc": "Administration of Windows Server and Linux servers; local and cloud network administration; monitoring with Zabbix and Grafana; security configuration, Google Workspace; support to development teams.",
+                "job5-title": "IT Assistant – Grupo empZ (Feb/2016 – Mar/2018)",
+                "job5-desc": "N1 and N2 support, Windows server administration (AD, DNS, DHCP, GPO), monitoring with Zabbix and UniFi, Protheus ERP and McAfee ePO antivirus administration, technical documentation.",
+                "job6-title": "Network Implementation Intern – Telemont (Mar/2014 – Dec/2015)",
+                "job6-desc": "Support in structured network installation and maintenance; technical documentation; basic hardware and software support; inventory update; face-to-face customer service.",
+                "job7-title": "Technical Support Analyst – Tahto (Mar/2012 – Jan/2014)",
+                "job7-desc": "Customer support for internet and telephony; network services configuration, modems and routers; troubleshooting analysis in ticket system; remote support and script development.",
+                "theme-dark": "🌙 Dark Mode",
+                "theme-light": "☀️ Light Mode"
+            },
+            es: {
+                title: "Kayo Patryc Franca - Currículum",
+                subtitle: "Analista de Infraestructura • SRE • DevOps 👨🏾‍💻",
+                github: "GitHub",
+                linkedin: "LinkedIn",
+                email: "Email",
+                phone: "Teléfono",
+                "about-title": "Sobre mí",
+                "about-p1": "Soy un profesional de tecnología con 10 años de experiencia en TI, redes y soporte técnico, trabajando con enfoque en entornos Linux, monitoreo, automatización y mantenimiento de sistemas críticos. Tengo experiencia en empresas de tecnología, movilidad urbana y software jurídico, apoyando tanto la operación como la evolución de la infraestructura.",
+                "about-p2": "Actualmente trabajo con soporte y monitoreo de sistemas de billetaje electrónico y control semafórico, administrando servidores Linux y Windows, contenedores Docker, bases de datos Oracle, automatizaciones en Shell Script y Python, además de herramientas como Zabbix, GitLab, Kafka, entre otras.",
+                "about-p3": "Graduado en Tecnología en Redes de Computadores por SENAI FATESG, también poseo certificaciones como DevOps Essentials Professional Certificate (DEPC) y Oracle Cloud Infrastructure Foundations Associate. Actualmente estudiando para certificaciones Oracle, AWS y Kubernetes.",
+                "skills-title": "Principales Competencias",
+                "skill-1": "Linux | Windows Server | Redes",
+                "skill-2": "Docker | Git | GitLab CI/CD",
+                "skill-3": "Zabbix | Grafana | Apache | Nginx",
+                "skill-4": "Shell Script | Python | PL/SQL",
+                "skill-5": "Oracle DB | API RESTful | Kafka",
+                "skill-6": "Kanban | Scrum | Documentación técnica",
+                "experience-title": "Experiencia Profesional",
+                "education-title": "Formación Académica",
+                "languages-title": "Idiomas",
+                "certifications-title": "Cursos y Certificaciones",
+                "studying-title": "Estudiando para",
+                "job1-title": "Analista de Infraestructura y Soporte Pleno – Dataprom (may/2025 – presente)",
+                "job1-desc": "Administración de servidores Linux y Windows Server en múltiples versiones; análisis, monitoreo y corrección de incidentes en producción; implementación de automatizaciones con Bash Script y Python; soporte a equipos de desarrollo y prácticas SRE; extracción de datos en Oracle; monitoreo con Zabbix.",
+                "job2-title": "Analista de Infraestructura y Soporte Júnior – Dataprom (feb/2022 – abr/2025)",
+                "job2-desc": "Gestión de servidores Linux y Windows en ambiente corporativo; ejecución de respaldos; soporte técnico; análisis de rendimiento e incidentes con monitoreo; elaboración de documentación.",
+                "job3-title": "Analista de Soporte e Infraestructura II – Oobj (dic/2020 – feb/2022)",
+                "job3-desc": "Soporte a entornos Windows y Linux, monitoreo con Zabbix y Grafana, integración con APIs RESTful para ERPs, orientación técnica a nuevos colaboradores, documentación técnica.",
+                "job4-title": "Analista de Infraestructura de TI – Aviso Urgente (abr/2018 – dic/2020)",
+                "job4-desc": "Administración de servidores Windows Server y Linux; administración de redes locales y cloud; monitoreo con Zabbix y Grafana; configuración de seguridad, Google Workspace; soporte a equipos de desarrollo.",
+                "job5-title": "Asistente de TI – Grupo empZ (feb/2016 – mar/2018)",
+                "job5-desc": "Soporte N1 y N2, administración de servidores Windows (AD, DNS, DHCP, GPO), monitoreo con Zabbix y UniFi, administración del ERP Protheus y antivírus McAfee ePO, documentación técnica.",
+                "job6-title": "Pasante de Implementación de Redes – Telemont (mar/2014 – dic/2015)",
+                "job6-desc": "Apoyo en instalación y mantenimiento de redes estructuradas; documentación técnica; soporte básico en hardware y software; actualización de inventario; atención presencial.",
+                "job7-title": "Analista de Soporte Técnico – Tahto (mar/2012 – ene/2014)",
+                "job7-desc": "Soporte a clientes em internet y telefonía; configuración de servicios de red, módems y routers; análisis de problemas en sistema de tickets; soporte remoto y elaboración de scripts.",
+                "theme-dark": "🌙 Modo Oscuro",
+                "theme-light": "☀️ Modo Claro"
+            }
+        };
+
+        // Controle do tema
+        let isDarkMode = false;
+        const themeToggle = document.getElementById('themeToggle');
+        const languageSelect = document.getElementById('languageSelect');
+        const body = document.body;
+        const hamburger = document.getElementById('hamburger');
+        const navbarControls = document.getElementById('navbarControls');
+
+        // Função para atualizar o tema
+        function updateTheme() {
+            const currentLang = languageSelect.value;
+            const themeIcon = themeToggle.querySelector('i');
+
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Função para traduzir a página
+        function translatePage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Atualizar o título da página
+            document.title = translations[lang]['title'];
+
+            // Atualizar o tema após a tradução
+            updateTheme();
+        }
+
+        // Event listeners
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            updateTheme();
+        });
+
+        languageSelect.addEventListener('change', (e) => {
+            translatePage(e.target.value);
+        });
+
+        // Menu hambúrguer
+        hamburger.addEventListener('click', () => {
+            navbarControls.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!navbarControls.contains(e.target) && !hamburger.contains(e.target)) {
+                navbarControls.classList.remove('active');
+            }
+        });
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            // Verificar tema salvo no localStorage
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                isDarkMode = true;
+            }
+
+            translatePage('pt');
+            updateTheme();
+        });
+    </script>
+</body>
+
+</html>
