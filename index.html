@@ -427,6 +427,21 @@
                 height: 120px;
             }
         }
+
+        /* Correções para garantir que o botão de tema apareça */
+        @media (min-width: 601px) {
+            .hamburger {
+                display: none;
+            }
+            
+            .navbar-controls {
+                display: flex !important;
+            }
+        }
+
+        .theme-toggle {
+            display: flex !important;
+        }
     </style>
 </head>
 
@@ -761,6 +776,7 @@
 
             // Atualizar o título da página
             document.title = translations[lang]['title'];
+            localStorage.setItem('language', lang);
 
             // Atualizar o tema após a tradução
             updateTheme();
@@ -794,10 +810,30 @@
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 isDarkMode = true;
+            } else {
+                isDarkMode = false;
             }
 
-            translatePage('pt');
+            // Verificar idioma salvo
+            const savedLang = localStorage.getItem('language') || 'pt';
+            languageSelect.value = savedLang;
+            
+            translatePage(savedLang);
             updateTheme();
+
+            // Mostrar controles em telas grandes
+            if (window.innerWidth > 600) {
+                navbarControls.style.display = 'flex';
+            }
+        });
+
+        // Atualizar em redimensionamento
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 600) {
+                navbarControls.style.display = 'flex';
+            } else {
+                navbarControls.style.display = 'none';
+            }
         });
     </script>
 </body>
