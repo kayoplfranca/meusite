@@ -5,10 +5,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kayo Franca - Currículo</title>
-    <!-- Adicionando Font Awesome para ícones -->
+    <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts para tipografia -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset básico */
+        /* Reset e variáveis CSS */
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #2c3e50;
+            --light: #f8f9fa;
+            --dark: #1a1a1a;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,22 +30,34 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--secondary);
             line-height: 1.6;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
-        /* Modo escuro */
         body.dark-mode {
-            background: #1a1a1a;
+            background: var(--dark);
             color: #e0e0e0;
         }
 
-        /* Navbar - Versão Mobile First */
+        /* Container principal */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 160px 1rem 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 100px 2rem 2rem;
+            }
+        }
+
+        /* Navbar */
         .navbar {
-            background: #fff;
+            background: var(--white);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
@@ -52,7 +78,7 @@
         .navbar-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #2c3e50;
+            color: var(--secondary);
             text-align: center;
         }
 
@@ -107,7 +133,7 @@
             }
         }
 
-        /* Controles - Estilo Mobile */
+        /* Controles */
         .control-group {
             display: flex;
             gap: 0.5rem;
@@ -158,7 +184,7 @@
             gap: 0.5rem;
             font-size: 1rem;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         body.dark-mode .theme-toggle {
@@ -182,19 +208,6 @@
             }
         }
 
-        /* Container principal - Ajuste para navbar maior */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 160px 1rem 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .container {
-                padding: 100px 2rem 2rem;
-            }
-        }
-
         /* Cabeçalho */
         .header {
             text-align: center;
@@ -203,8 +216,9 @@
 
         .header h1 {
             font-size: 2.5rem;
-            color: #2c3e50;
+            color: var(--secondary);
             margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
         body.dark-mode .header h1 {
@@ -213,7 +227,7 @@
 
         .header .subtitle {
             font-size: 1.2rem;
-            color: #3498db;
+            color: var(--primary);
             font-weight: 500;
         }
 
@@ -229,9 +243,9 @@
             object-fit: cover;
             margin: 1.5rem auto;
             display: block;
-            border: 4px solid #3498db;
+            border: 4px solid var(--primary);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .profile-photo:hover {
@@ -243,7 +257,7 @@
             border-color: #74b9ff;
         }
 
-        /* Social links */
+        /* Social links com tooltips */
         .social {
             display: flex;
             gap: 1.5rem;
@@ -252,42 +266,83 @@
             flex-wrap: wrap;
         }
 
-        .social a {
-            color: #3498db;
+        .social-item {
+            position: relative;
+            display: inline-block;
+        }
+
+        .social-link {
+            color: var(--primary);
             text-decoration: none;
             padding: 0.5rem 1rem;
-            border: 2px solid #3498db;
+            border: 2px solid var(--primary);
             border-radius: 5px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .social a:hover {
-            background: #3498db;
+        .social-link:hover {
+            background: var(--primary);
             color: white;
             transform: translateY(-2px);
         }
 
-        body.dark-mode .social a {
+        body.dark-mode .social-link {
             color: #74b9ff;
             border-color: #74b9ff;
         }
 
-        body.dark-mode .social a:hover {
+        body.dark-mode .social-link:hover {
             background: #74b9ff;
             color: #1a1a1a;
         }
 
+        .social-tooltip {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--secondary);
+            color: var(--white);
+            text-align: center;
+            border-radius: var(--border-radius);
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--secondary) transparent transparent transparent;
+        }
+
+        .social-item:hover .social-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
         /* Seções */
         .section {
-            background: white;
+            background: var(--white);
             padding: 2rem;
             margin-bottom: 2rem;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
         }
 
         body.dark-mode .section {
@@ -296,11 +351,12 @@
         }
 
         .section h2 {
-            color: #2c3e50;
+            color: var(--secondary);
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            border-bottom: 2px solid #3498db;
+            border-bottom: 2px solid var(--primary);
             padding-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         body.dark-mode .section h2 {
@@ -309,10 +365,11 @@
         }
 
         .section h3 {
-            color: #3498db;
+            color: var(--primary);
             font-size: 1.1rem;
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
+            font-weight: 500;
         }
 
         body.dark-mode .section h3 {
@@ -324,34 +381,35 @@
             text-align: justify;
         }
 
+        /* Listas estilizadas */
         .section ul {
             list-style: none;
             padding: 0;
         }
 
         .section li {
-            background: #f8f9fa;
-            margin-bottom: 0.5rem;
+            background: var(--light);
+            margin-bottom: 0.8rem;
             padding: 1rem;
-            border-left: 4px solid #3498db;
+            border-left: 4px solid var(--primary);
             border-radius: 4px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            position: relative;
         }
 
-        /* Efeito hover nas competências */
-        .skills-list li:hover,
-        .education-list li:hover,
-        .certifications-list li:hover {
+        .section li:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .section li:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section li:hover {
             transform: translateX(5px);
             box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
             background: #e9f5ff;
-        }
-
-        body.dark-mode .skills-list li:hover,
-        body.dark-mode .education-list li:hover,
-        body.dark-mode .certifications-list li:hover {
-            background: #3d4a56;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
         }
 
         body.dark-mode .section li {
@@ -359,12 +417,140 @@
             border-left-color: #74b9ff;
         }
 
+        body.dark-mode .section li:hover {
+            background: #3d4a56;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
         .section strong {
-            color: #2c3e50;
+            color: var(--secondary);
+            font-weight: 600;
         }
 
         body.dark-mode .section strong {
             color: #ecf0f1;
+        }
+
+        /* Modal para experiências */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--white);
+            margin: 2rem;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-mode .modal-content {
+            background: #2d2d2d;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+        }
+
+        .modal-body h4 {
+            color: var(--secondary);
+            margin: 1.5rem 0 0.5rem;
+            font-weight: 600;
+        }
+
+        body.dark-mode .modal-body h4 {
+            color: #ecf0f1;
+        }
+
+        .modal-body ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body li {
+            margin-bottom: 0.5rem;
+            background: none;
+            border-left: none;
+            padding: 0;
+            transform: none;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-item {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        body.dark-mode .tech-item {
+            background: #74b9ff;
+            color: #1a1a1a;
         }
 
         /* Responsividade */
@@ -389,6 +575,11 @@
             .section {
                 padding: 1.5rem;
             }
+
+            .modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -397,7 +588,7 @@
                 height: 120px;
             }
             
-            .social a {
+            .social-link {
                 padding: 0.5rem;
                 font-size: 0.9rem;
             }
@@ -434,44 +625,48 @@
         <!-- Cabeçalho -->
         <header class="header">
             <h1>Kayo Patryc Franca</h1>
-            <!-- Imagem atualizada -->
-            <img src="https://github.com/kayoplfranca/meusite/raw/main/1750349260480.jpeg" class="profile-photo">
+            <img src="https://github.com/kayoplfranca/meusite/raw/main/1750349260480.jpeg" alt="Foto de Kayo Franca" class="profile-photo">
             <p class="subtitle" data-i18n="subtitle">Analista de Infraestrutura • SRE • DevOps 👨🏾‍💻</p>
 
             <div class="social">
-                <a href="https://github.com/kayopfranca" target="_blank">
-                    <i class="fab fa-github"></i> <span data-i18n="github">GitHub</span>
-                </a>
-                <a href="https://www.linkedin.com/in/kayopfranca/" target="_blank">
-                    <i class="fab fa-linkedin"></i> <span data-i18n="linkedin">LinkedIn</span>
-                </a>
-                <a href="mailto:kayo.ti@outlook.com">
-                    <i class="fas fa-envelope"></i> <span data-i18n="email">Email</span>
-                </a>
-                <a href="tel:+5562984144790">
-                    <i class="fas fa-phone"></i> <span data-i18n="phone">Telefone</span>
-                </a>
+                <div class="social-item">
+                    <a href="https://github.com/kayopfranca" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i> <span data-i18n="github">GitHub</span>
+                    </a>
+                    <span class="social-tooltip">kayopfranca</span>
+                </div>
+                <div class="social-item">
+                    <a href="https://www.linkedin.com/in/kayopfranca/" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i> <span data-i18n="linkedin">LinkedIn</span>
+                    </a>
+                    <span class="social-tooltip">Analista de Infraestrutura e Suporte Pleno</span>
+                </div>
+                <div class="social-item">
+                    <a href="mailto:kayo.ti@outlook.com" class="social-link">
+                        <i class="fas fa-envelope"></i> <span data-i18n="email">Email</span>
+                    </a>
+                    <span class="social-tooltip">kayo.ti@outlook.com</span>
+                </div>
+                <div class="social-item">
+                    <a href="tel:+5562984144790" class="social-link">
+                        <i class="fas fa-phone"></i> <span data-i18n="phone">Telefone</span>
+                    </a>
+                    <span class="social-tooltip">+55 62 98414-4790</span>
+                </div>
             </div>
         </header>
 
-        <!-- Sobre mim -->
+        <!-- Resumo Profissional -->
         <section class="section">
-            <h2 data-i18n="about-title">Sobre mim</h2>
-            <p data-i18n="about-p1">
-                Sou profissional de tecnologia com 10 anos de experiência em TI, redes e suporte técnico, atuando com
-                foco em ambientes Linux, monitoramento, automação e sustentação de sistemas críticos. Tenho vivência em
-                empresas de tecnologia, mobilidade urbana e software jurídico, apoiando tanto a operação quanto a
-                evolução da infraestrutura.
+            <h2 data-i18n="resume-title">Resumo Profissional</h2>
+            <p data-i18n="resume-p1">
+                Profissional de Infraestrutura e DevOps com 10 anos de experiência em administração de sistemas Linux/Windows, monitoramento, automação e sustentação de ambientes críticos. Especializado em práticas SRE (Site Reliability Engineering) com foco em alta disponibilidade, escalabilidade e resiliência de sistemas.
             </p>
-            <p data-i18n="about-p2">
-                Atualmente trabalho com sustentação e monitoramento de sistemas de bilhetagem eletrônica e controle
-                semafórico, administrando servidores Linux e Windows, containers Docker, bancos de dados Oracle,
-                automações em Shell Script e Python, além de ferramentas como Zabbix, GitLab, Kafka, entre outras.
+            <p data-i18n="resume-p2">
+                Atuação destacada em ambientes de alta complexidade, incluindo sistemas de bilhetagem eletrônica e controle semafórico, com domínio em tecnologias como Docker, Zabbix, GitLab CI/CD, Oracle DB e automações com Shell Script e Python. Experiência em arquitetura de sistemas distribuídos e microsserviços.
             </p>
-            <p data-i18n="about-p3">
-                Formado em Tecnologia em Redes de Computadores pelo SENAI FATESG, também possuo certificações como o
-                DevOps Essentials Professional Certificate (DEPC) e Oracle Cloud Infrastructure Foundations Associate.
-                Atualmente estudando para certificações Oracle, AWS e Kubernetes.
+            <p data-i18n="resume-p3">
+                Certificado em Oracle Cloud Infrastructure e DevOps Essentials, com conhecimentos em Kubernetes, AWS e metodologias ágeis. Perfil proativo, com forte capacidade analítica para resolução de problemas complexos e melhoria contínua de processos.
             </p>
         </section>
 
@@ -479,12 +674,14 @@
         <section class="section">
             <h2 data-i18n="skills-title">Principais Competências</h2>
             <ul class="skills-list">
-                <li data-i18n="skill-1">Linux | Windows Server | Redes</li>
-                <li data-i18n="skill-2">Docker | Git | GitLab CI/CD</li>
-                <li data-i18n="skill-3">Zabbix | Grafana | Apache | Nginx</li>
-                <li data-i18n="skill-4">Shell Script | Python | PL/SQL</li>
-                <li data-i18n="skill-5">Oracle DB | API RESTful | Kafka</li>
-                <li data-i18n="skill-6">Kanban | Scrum | Documentação técnica</li>
+                <li data-i18n="skill-1">Administração de Sistemas Linux/Windows Server</li>
+                <li data-i18n="skill-2">Monitoramento (Zabbix, Grafana, Prometheus)</li>
+                <li data-i18n="skill-3">Contêinerização e Orquestração (Docker, Kubernetes)</li>
+                <li data-i18n="skill-4">Automação (Shell Script, Python, Ansible)</li>
+                <li data-i18n="skill-5">CI/CD (GitLab, GitHub Actions)</li>
+                <li data-i18n="skill-6">Bancos de Dados (Oracle, PostgreSQL, MySQL)</li>
+                <li data-i18n="skill-7">Práticas SRE e DevOps</li>
+                <li data-i18n="skill-8">Infraestrutura como Código (Terraform)</li>
             </ul>
         </section>
 
@@ -492,61 +689,41 @@
         <section class="section">
             <h2 data-i18n="experience-title">Experiência Profissional</h2>
 
-            <h3 data-i18n="job1-title">Analista de Infraestrutura e Suporte Pleno – Dataprom (mai/2025 – momento)</h3>
-            <p data-i18n="job1-desc">
-                Administração de servidores Linux e Windows Server em múltiplas versões; análise, monitoramento e
-                correção de incidentes em produção; implementação de automações com Bash Script e Python; suporte a
-                times de desenvolvimento e práticas SRE; extração de dados em Oracle; monitoramento com Zabbix.
-            </p>
-
-            <h3 data-i18n="job2-title">Analista de Infraestrutura e Suporte Júnior – Dataprom (fev/2022 – abr/2025)</h3>
-            <p data-i18n="job2-desc">
-                Gerenciamento de servidores Linux e Windows em ambiente corporativo; execução de backups; suporte
-                técnico; análise de desempenho e incidentes com monitoramento; elaboração de documentação.
-            </p>
-
-            <h3 data-i18n="job3-title">Analista de Suporte e Infraestrutura II – Oobj (dez/2020 – fev/2022)</h3>
-            <p data-i18n="job3-desc">
-                Suporte a ambientes Windows e Linux, monitoramento com Zabbix e Grafana, integração com APIs RESTful
-                para ERPs, orientação técnica a novos colaboradores, documentação técnica.
-            </p>
-
-            <h3 data-i18n="job4-title">Analista de Infraestrutura de TI – Aviso Urgente (abr/2018 – dez/2020)</h3>
-            <p data-i18n="job4-desc">
-                Administração de servidores Windows Server e Linux; administração de redes locais e cloud; monitoramento
-                com Zabbix e Grafana; configuração de segurança, Google Workspace; suporte a equipes de desenvolvimento.
-            </p>
-
-            <h3 data-i18n="job5-title">Assistente de TI – Grupo empZ (fev/2016 – mar/2018)</h3>
-            <p data-i18n="job5-desc">
-                Suporte N1 e N2, administração de servidores Windows (AD, DNS, DHCP, GPO), monitoramento com Zabbix e
-                UniFi, administração do ERP Protheus e antivírus McAfee ePO, documentação técnica.
-            </p>
-
-            <h3 data-i18n="job6-title">Estagiário de Implantação de Redes – Telemont (mar/2014 – dez/2015)</h3>
-            <p data-i18n="job6-desc">
-                Apoio na instalação e manutenção de redes estruturadas; documentação técnica; suporte básico em hardware
-                e software; atualização de inventário; atendimento presencial.
-            </p>
-
-            <h3 data-i18n="job7-title">Analista de Suporte Técnico – Tahto (mar/2012 – jan/2014)</h3>
-            <p data-i18n="job7-desc">
-                Suporte a clientes em internet e telefonia; configuração de serviços de rede, modens e roteadores;
-                análise de problemas em sistema de chamados; suporte remoto e elaboração de scripts.
-            </p>
+            <ul class="experience-list">
+                <li onclick="openModal('job1')">
+                    <strong data-i18n="job1-title">Analista de Infraestrutura e Suporte Pleno</strong> – contrato: 02/2022 até o momento
+                </li>
+                
+                <li onclick="openModal('job2')">
+                    <strong data-i18n="job2-title">Analista de Suporte e Infraestrutura II</strong> contrato: 12/2020 à 02/2022
+                </li>
+                
+                <li onclick="openModal('job3')">
+                    <strong data-i18n="job3-title">Analista de Infraestrutura de TI</strong> contrato: 04/2018 à 12/2020
+                </li>
+                
+                <li onclick="openModal('job4')">
+                    <strong data-i18n="job4-title">Analista de Suporte de TI</strong> contrato: 06/2016 à 03/2018
+                </li>
+                
+                <li onclick="openModal('job5')">
+                    <strong data-i18n="job5-title">Assistente de Implantação</strong> contrato: 03/2014 à 12/2015
+                </li>
+                
+                <li onclick="openModal('job6')">
+                    <strong data-i18n="job6-title">Agente de Suporte Técnico Tahto </strong> contrato: 03/2012 à 01/2014
+                </li>
+            </ul>
         </section>
 
         <!-- Formação Acadêmica -->
         <section class="section">
             <h2 data-i18n="education-title">Formação Acadêmica</h2>
             <ul class="education-list">
-                <li><strong>Graduação em Redes de Computadores</strong> - SENAI FATESG (02/2018
-                    a 07/2020)</li>
+                <li><strong>Graduação em Redes de Computadores</strong> - SENAI FATESG (02/2018 a 07/2020)</li>
                 <li><strong>Análise e Desenvolvimento de Sistemas</strong> - PUC GO (06/2015 a 12/2017)</li>
-                <li><strong>Técnico em Redes & Telecomunicações</strong> - SENAI FATESG (01/2015 a
-                    12/2015)</li>
-                <li><strong>Técnico em Manut. de Computadores</strong> - Fund. Bahiana de Engenharia (01 a
-                    06/2010)</li>
+                <li><strong>Técnico em Redes & Telecomunicações</strong> - SENAI FATESG (01/2015 a 12/2015)</li>
+                <li><strong>Técnico em Manut. de Computadores</strong> - Fund. Bahiana de Engenharia (01 a 06/2010)</li>
                 <li><strong>Técnico em Informática</strong> - Fund. Bahiana de Engenharia (07/2009 a 12/2009)</li>
             </ul>
         </section>
@@ -555,11 +732,10 @@
         <section class="section">
             <h2 data-i18n="certifications-title">Cursos e Certificações</h2>
             <ul class="certifications-list">
-                <li><strong>Oracle Cloud Infrastructure Foundations Associate</strong> -
-                    Oracle (05/2025 a 05/2027)</li>
+                <li><strong>Oracle Cloud Infrastructure Foundations Associate</strong> - Oracle (05/2025 a 05/2027)</li>
                 <li><strong>Kubernetes Essentials LFS158</strong> - The Linux Foundation (04/2025)</li>
-                <li><strong>DevOps Essentials Professional Certificate (DEPC)</strong> - CertiProf
-                    (08/2019)</li>
+                <li><strong>DevOps Essentials Professional Certificate (DEPC)</strong> - CertiProf (08/2019)</li>
+            </ul>
         </section>
 
         <!-- Idiomas -->
@@ -572,6 +748,210 @@
         </section>
     </div>
 
+    <!-- Modais para Experiências Profissionais -->
+    <div id="job1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="job1-title">Analista de Infraestrutura e Suporte Pleno - Dataprom LTDA</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 data-i18n="responsibilities-title">Responsabilidades:</h4>
+                <ul>
+                    <li data-i18n="job1-resp1">Administração de servidores Linux e Windows Server em múltiplas versões</li>
+                    <li data-i18n="job1-resp2">Monitoramento da infraestrutura com Zabbix e Grafana</li>
+                    <li data-i18n="job1-resp3">Criação de scripts PL/SQL para extração de dados em bancos Oracle</li>
+                    <li data-i18n="job1-resp4">Implementação de automações com scripts Bash, Python e PowerShell</li>
+                    <li data-i18n="job1-resp5">Sustentação aos balanceadores de carga NGINX e servidores web Jetty, Apache e IIS</li>
+                    <li data-i18n="job1-resp6">Execução de backups utilizando Bacula Admin Tools</li>
+                    <li data-i18n="job1-resp7">Testes de performance em APIs utilizando Postman nos ambientes PROD e HOM</li>
+                    <li data-i18n="job1-resp8">Acompanhamento de servidores em nuvem na plataforma OCI (Oracle Cloud Infrastructure)</li>
+                    <li data-i18n="job1-resp9">Gestão de Mudanças (GMUD), incluindo contato com clientes para agendamento de deploys</li>
+                    <li data-i18n="job1-resp10">Suporte às equipes de desenvolvimento e implementação de práticas SRE</li>
+                </ul>
+                
+                <h4 data-i18n="technologies-title">Tecnologias Utilizadas:</h4>
+                <div class="tech-list">
+                    <span class="tech-item">Linux</span>
+                    <span class="tech-item">Windows Server</span>
+                    <span class="tech-item">Zabbix</span>
+                    <span class="tech-item">Grafana</span>
+                    <span class="tech-item">Oracle DB</span>
+                    <span class="tech-item">PL/SQL</span>
+                    <span class="tech-item">Bash</span>
+                    <span class="tech-item">Python</span>
+                    <span class="tech-item">PowerShell</span>
+                    <span class="tech-item">NGINX</span>
+                    <span class="tech-item">Apache</span>
+                    <span class="tech-item">IIS</span>
+                    <span class="tech-item">Jetty</span>
+                    <span class="tech-item">Bacula</span>
+                    <span class="tech-item">Postman</span>
+                    <span class="tech-item">OCI</span>
+                    <span class="tech-item">SRE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="job2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="job2-title">Analista de Suporte e Infraestrutura II – Oobj (12/2020 – 02/2022)</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 data-i18n="responsibilities-title">Responsabilidades:</h4>
+                <ul>
+                    <li data-i18n="job2-resp1">Monitoramento da infraestrutura com Zabbix e Grafana</li>
+                    <li data-i18n="job2-resp2">Administração de servidores Windows Server e Linux com motores de emissão de documentos fiscais</li>
+                    <li data-i18n="job2-resp3">Testes de performance em APIs utilizando Postman para ambientes PROD e HOM</li>
+                    <li data-i18n="job2-resp4">Criação de scripts PL/SQL para extração de dados em bancos PostgreSQL e Oracle</li>
+                    <li data-i18n="job2-resp5">Suporte às equipes de desenvolvimento de aplicações em atualizações do produto</li>
+                    <li data-i18n="job2-resp6">Gestão de Mudanças (GMUD), incluindo contato com clientes para agendamento de deploys</li>
+                </ul>
+                
+                <h4 data-i18n="technologies-title">Tecnologias Utilizadas:</h4>
+                <div class="tech-list">
+                    <span class="tech-item">Windows Server</span>
+                    <span class="tech-item">Linux</span>
+                    <span class="tech-item">Zabbix</span>
+                    <span class="tech-item">Grafana</span>
+                    <span class="tech-item">PostgreSQL</span>
+                    <span class="tech-item">Oracle DB</span>
+                    <span class="tech-item">PL/SQL</span>
+                    <span class="tech-item">Postman</span>
+                    <span class="tech-item">Documentos Fiscais</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="job3" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="job3-title">Analista de Infraestrutura de TI – Aviso Urgente (04/2018 – 12/2020)</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 data-i18n="responsibilities-title">Responsabilidades:</h4>
+                <ul>
+                    <li data-i18n="job3-resp1">Administração de servidores Windows Server 2008/2012 R2 e Linux</li>
+                    <li data-i18n="job3-resp2">Configuração de softwares e patches de segurança em Windows/Linux</li>
+                    <li data-i18n="job3-resp3">Gestão de redes e infraestrutura local e em nuvem AWS</li>
+                    <li data-i18n="job3-resp4">Monitoramento da infraestrutura com Zabbix e Grafana</li>
+                    <li data-i18n="job3-resp5">Administração da plataforma Google Workspace e PABX Virtual</li>
+                    <li data-i18n="job3-resp6">Configuração e manutenção da segurança de rede (Firewall, Proxy)</li>
+                    <li data-i18n="job3-resp7">Gerenciamento do McAfee Antivírus e do servidor de e-mail Zimbra</li>
+                </ul>
+                
+                <h4 data-i18n="technologies-title">Tecnologias Utilizadas:</h4>
+                <div class="tech-list">
+                    <span class="tech-item">Windows Server</span>
+                    <span class="tech-item">Linux</span>
+                    <span class="tech-item">AWS</span>
+                    <span class="tech-item">Zabbix</span>
+                    <span class="tech-item">Grafana</span>
+                    <span class="tech-item">Google Workspace</span>
+                    <span class="tech-item">PABX Virtual</span>
+                    <span class="tech-item">Firewall</span>
+                    <span class="tech-item">Proxy</span>
+                    <span class="tech-item">McAfee</span>
+                    <span class="tech-item">Zimbra</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="job4" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="job4-title">Analista de Suporte de TI – Grupo empZ (06/2016 – 03/2018)</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 data-i18n="responsibilities-title">Responsabilidades:</h4>
+                <ul>
+                    <li data-i18n="job4-resp1">Administração e monitoramento de servidores com Zabbix e Grafana</li>
+                    <li data-i18n="job4-resp2">Configuração de softwares e patches de segurança em Windows/Linux</li>
+                    <li data-i18n="job4-resp3">Diagnóstico, instalação e manutenção de computadores e equipamentos de TI</li>
+                    <li data-i18n="job4-resp4">Configuração de acessos e permissões em sistemas corporativos: e-mail, chat, ERPs</li>
+                    <li data-i18n="job4-resp5">Suporte especializado aos usuários locais e remotos nas unidades do grupo</li>
+                    <li data-i18n="job4-resp6">Auxílio em projetos de infraestrutura e melhorias tecnológicas</li>
+                </ul>
+                
+                <h4 data-i18n="technologies-title">Tecnologias Utilizadas:</h4>
+                <div class="tech-list">
+                    <span class="tech-item">Windows</span>
+                    <span class="tech-item">Linux</span>
+                    <span class="tech-item">Zabbix</span>
+                    <span class="tech-item">Grafana</span>
+                    <span class="tech-item">ERP</span>
+                    <span class="tech-item">Suporte Técnico</span>
+                    <span class="tech-item">Redes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="job5" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="job5-title">Assistente de Implantação – Telemont (03/2014 – 12/2015)</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 data-i18n="responsibilities-title">Responsabilidades:</h4>
+                <ul>
+                    <li data-i18n="job5-resp1">Apoio na instalação e manutenção de redes estruturadas GPON</li>
+                    <li data-i18n="job5-resp2">Desenho de projetos de redes de fibra óptica em AutoCAD</li>
+                    <li data-i18n="job5-resp3">Suporte técnico básico em hardware e software</li>
+                    <li data-i18n="job5-resp4">Documentação técnica dos processos de implantação</li>
+                    <li data-i18n="job5-resp5">Atualização do inventário de equipamentos de rede</li>
+                </ul>
+                
+                <h4 data-i18n="technologies-title">Tecnologias Utilizadas:</h4>
+                <div class="tech-list">
+                    <span class="tech-item">Redes GPON</span>
+                    <span class="tech-item">Fibra Óptica</span>
+                    <span class="tech-item">AutoCAD</span>
+                    <span class="tech-item">Hardware</span>
+                    <span class="tech-item">Documentação</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="job6" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="job6-title">Agente de Suporte Técnico – Tahto (03/2012 à 01/2014)</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 data-i18n="responsibilities-title">Responsabilidades:</h4>
+                <ul>
+                    <li data-i18n="job6-resp1">Atendimento direto ao usuário final com foco em conectividade e serviços residenciais e corporativos</li>
+                    <li data-i18n="job6-resp2">Diagnóstico remoto (troubleshooting) de problemas de internet e rede (Wi-Fi, cabo, modem)</li>
+                    <li data-i18n="job6-resp3">Instalação e configuração de modens e roteadores homologados</li>
+                    <li data-i18n="job6-resp4">Suporte em configurações de provedores de acesso, DNS e autenticação PPPoE</li>
+                    <li data-i18n="job6-resp5">Abertura de OS / direcionamento técnico para atendimento presencial</li>
+                </ul>
+                
+                <h4 data-i18n="technologies-title">Tecnologias Utilizadas:</h4>
+                <div class="tech-list">
+                    <span class="tech-item">Suporte Técnico</span>
+                    <span class="tech-item">Redes</span>
+                    <span class="tech-item">Modens</span>
+                    <span class="tech-item">Roteadores</span>
+                    <span class="tech-item">DNS</span>
+                    <span class="tech-item">PPPoE</span>
+                    <span class="tech-item">CRM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Dicionário de traduções
         const translations = {
@@ -582,36 +962,70 @@
                 linkedin: "LinkedIn",
                 email: "Email",
                 phone: "Telefone",
-                "about-title": "Sobre mim",
-                "about-p1": "Sou profissional de tecnologia com 10 anos de experiência em TI, redes e suporte técnico, atuando com foco em ambientes Linux, monitoramento, automação e sustentação de sistemas críticos. Tenho vivência em empresas de tecnologia, mobilidade urbana e software jurídico, apoiando tanto a operação quanto a evolução da infraestrutura.",
-                "about-p2": "Atualmente trabalho com sustentação e monitoramento de sistemas de bilhetagem eletrônica e controle semafórico, administrando servidores Linux e Windows, containers Docker, bancos de dados Oracle, automações em Shell Script e Python, além de ferramentas como Zabbix, GitLab, Kafka, entre outras.",
-                "about-p3": "Formado em Tecnologia em Redes de Computadores pelo SENAI FATESG, também possuo certificações como o DevOps Essentials Professional Certificate (DEPC) e Oracle Cloud Infrastructure Foundations Associate. Atualmente estudando para certificações Oracle, AWS e Kubernetes.",
+                "resume-title": "Resumo Profissional",
+                "resume-p1": "Profissional de Infraestrutura e DevOps com 10 anos de experiência em administração de sistemas Linux/Windows, monitoramento, automação e sustentação de ambientes críticos. Especializado em práticas SRE (Site Reliability Engineering) com foco em alta disponibilidade, escalabilidade e resiliência de sistemas.",
+                "resume-p2": "Atuação destacada em ambientes de alta complexidade, incluindo sistemas de bilhetagem eletrônica e controle semafórico, com domínio em tecnologias como Docker, Zabbix, GitLab CI/CD, Oracle DB e automações com Shell Script e Python. Experiência em arquitetura de sistemas distribuídos e microsserviços.",
+                "resume-p3": "Certificado em Oracle Cloud Infrastructure e DevOps Essentials, com conhecimentos em Kubernetes, AWS e metodologias ágeis. Perfil proativo, com forte capacidade analítica para resolução de problemas complexos e melhoria contínua de processos.",
                 "skills-title": "Principais Competências",
-                "skill-1": "Linux | Windows Server | Redes",
-                "skill-2": "Docker | Git | GitLab CI/CD",
-                "skill-3": "Zabbix | Grafana | Apache | Nginx",
-                "skill-4": "Shell Script | Python | PL/SQL",
-                "skill-5": "Oracle DB | API RESTful | Kafka",
-                "skill-6": "Kanban | Scrum | Documentação técnica",
+                "skill-1": "Administração de Sistemas Linux/Windows Server",
+                "skill-2": "Monitoramento (Zabbix, Grafana, Prometheus)",
+                "skill-3": "Contêinerização e Orquestração (Docker, Kubernetes)",
+                "skill-4": "Automação (Shell Script, Python, Ansible)",
+                "skill-5": "CI/CD (GitLab, GitHub Actions)",
+                "skill-6": "Bancos de Dados (Oracle, PostgreSQL, MySQL)",
+                "skill-7": "Práticas SRE e DevOps",
+                "skill-8": "Infraestrutura como Código (Terraform)",
                 "experience-title": "Experiência Profissional",
                 "education-title": "Formação Acadêmica",
                 "languages-title": "Idiomas",
                 "certifications-title": "Cursos e Certificações",
-                "studying-title": "Estudando para",
-                "job1-title": "Analista de Infraestrutura e Suporte Pleno – Dataprom (mai/2025 – momento)",
-                "job1-desc": "Administração de servidores Linux e Windows Server em múltiplas versões; análise, monitoramento e correção de incidentes em produção; implementação de automações com Bash Script e Python; suporte a times de desenvolvimento e práticas SRE; extração de dados em Oracle; monitoramento com Zabbix.",
-                "job2-title": "Analista de Infraestrutura e Suporte Júnior – Dataprom (fev/2022 – abr/2025)",
-                "job2-desc": "Gerenciamento de servidores Linux e Windows em ambiente corporativo; execução de backups; suporte técnico; análise de desempenho e incidentes com monitoramento; elaboração de documentação.",
-                "job3-title": "Analista de Suporte e Infraestrutura II – Oobj (dez/2020 – fev/2022)",
-                "job3-desc": "Suporte a ambientes Windows e Linux, monitoramento com Zabbix e Grafana, integração com APIs RESTful para ERPs, orientação técnica a novos colaboradores, documentação técnica.",
-                "job4-title": "Analista de Infraestrutura de TI – Aviso Urgente (abr/2018 – dez/2020)",
-                "job4-desc": "Administração de servidores Windows Server e Linux; administração de redes locais e cloud; monitoramento com Zabbix e Grafana; configuração de segurança, Google Workspace; suporte a equipes de desenvolvimento.",
-                "job5-title": "Assistente de TI – Grupo empZ (fev/2016 – mar/2018)",
-                "job5-desc": "Suporte N1 e N2, administração de servidores Windows (AD, DNS, DHCP, GPO), monitoramento com Zabbix e UniFi, administração do ERP Protheus e antivírus McAfee ePO, documentação técnica.",
-                "job6-title": "Estagiário de Implantação de Redes – Telemont (mar/2014 – dez/2015)",
-                "job6-desc": "Apoio na instalação e manutenção de redes estruturadas; documentação técnica; suporte básico em hardware e software; atualização de inventário; atendimento presencial.",
-                "job7-title": "Analista de Suporte Técnico – Tahto (mar/2012 – jan/2014)",
-                "job7-desc": "Suporte a clientes em internet e telefonia; configuração de serviços de rede, modens e roteadores; análise de problemas em sistema de chamados; suporte remoto e elaboração de scripts.",
+                "responsibilities-title": "Responsabilidades:",
+                "technologies-title": "Tecnologias Utilizadas:",
+                "job1-title": "Analista de Infraestrutura e Suporte Pleno | Dataprom",
+                "job1-resp1": "Administração de servidores Linux e Windows Server em múltiplas versões",
+                "job1-resp2": "Monitoramento da infraestrutura com Zabbix e Grafana",
+                "job1-resp3": "Criação de scripts PL/SQL para extração de dados em bancos Oracle",
+                "job1-resp4": "Implementação de automações com scripts Bash, Python e PowerShell",
+                "job1-resp5": "Sustentação aos balanceadores de carga NGINX e servidores web Jetty, Apache e IIS",
+                "job1-resp6": "Execução de backups utilizando Bacula Admin Tools",
+                "job1-resp7": "Testes de performance em APIs utilizando Postman nos ambientes PROD e HOM",
+                "job1-resp8": "Acompanhamento de servidores em nuvem na plataforma OCI (Oracle Cloud Infrastructure)",
+                "job1-resp9": "Gestão de Mudanças (GMUD), incluindo contato com clientes para agendamento de deploys",
+                "job1-resp10": "Suporte às equipes de desenvolvimento e implementação de práticas SRE",
+                "job2-title": "Analista de Suporte e Infraestrutura II | Oobj Tecnologia -",
+                "job2-resp1": "Monitoramento da infraestrutura com Zabbix e Grafana",
+                "job2-resp2": "Administração de servidores Windows Server e Linux com motores de emissão de documentos fiscais",
+                "job2-resp3": "Testes de performance em APIs utilizando Postman para ambientes PROD e HOM",
+                "job2-resp4": "Criação de scripts PL/SQL para extração de dados em bancos PostgreSQL e Oracle",
+                "job2-resp5": "Suporte às equipes de desenvolvimento de aplicações em atualizações do produto",
+                "job2-resp6": "Gestão de Mudanças (GMUD), incluindo contato com clientes para agendamento de deploys",
+                "job3-title": "Analista de Infraestrutura de TI | Aviso Urgente Software Jurídico - ",
+                "job3-resp1": "Administração de servidores Windows Server 2008/2012 R2 e Linux",
+                "job3-resp2": "Configuração de softwares e patches de segurança em Windows/Linux",
+                "job3-resp3": "Gestão de redes e infraestrutura local e em nuvem AWS",
+                "job3-resp4": "Monitoramento da infraestrutura com Zabbix e Grafana",
+                "job3-resp5": "Administração da plataforma Google Workspace e PABX Virtual",
+                "job3-resp6": "Configuração e manutenção da segurança de rede (Firewall, Proxy)",
+                "job3-resp7": "Gerenciamento do McAfee Antivírus e do servidor de e-mail Zimbra",
+                "job4-title": "Analista de Suporte de TI | Grupo EmpZ -",
+                "job4-resp1": "Administração e monitoramento de servidores com Zabbix e Grafana",
+                "job4-resp2": "Configuração de softwares e patches de segurança em Windows/Linux",
+                "job4-resp3": "Diagnóstico, instalação e manutenção de computadores e equipamentos de TI",
+                "job4-resp4": "Configuração de acessos e permissões em sistemas corporativos: e-mail, chat, ERPs",
+                "job4-resp5": "Suporte especializado aos usuários locais e remotos nas unidades do grupo",
+                "job4-resp6": "Auxílio em projetos de infraestrutura e melhorias tecnológicas",
+                "job5-title": "Assistente de Implantação | Telemont Engenharia - ",
+                "job5-resp1": "Apoio na instalação e manutenção de redes estruturadas GPON",
+                "job5-resp2": "Desenho de projetos de redes de fibra óptica em AutoCAD",
+                "job5-resp3": "Suporte técnico básico em hardware e software",
+                "job5-resp4": "Documentação técnica dos processos de implantação",
+                "job5-resp5": "Atualização do inventário de equipamentos de rede",
+                "job6-title": "Agente de Suporte Técnico | Tahto -",
+                "job6-resp1": "Atendimento direto ao usuário final com foco em conectividade e serviços residenciais e corporativos",
+                "job6-resp2": "Diagnóstico remoto (troubleshooting) de problemas de internet e rede (Wi-Fi, cabo, modem)",
+                "job6-resp3": "Instalação e configuração de modens e roteadores homologados",
+                "job6-resp4": "Suporte em configurações de provedores de acesso, DNS e autenticação PPPoE",
+                "job6-resp5": "Abertura de OS / direcionamento técnico para atendimento presencial",
                 "theme-dark": "🌙 Modo Escuro",
                 "theme-light": "☀️ Modo Claro"
             },
@@ -622,36 +1036,70 @@
                 linkedin: "LinkedIn",
                 email: "Email",
                 phone: "Phone",
-                "about-title": "About Me",
-                "about-p1": "I am a technology professional with 10 years of experience in IT, networking and technical support, working with focus on Linux environments, monitoring, automation and critical systems maintenance. I have experience in technology companies, urban mobility and legal software, supporting both operation and infrastructure evolution.",
-                "about-p2": "Currently working with support and monitoring of electronic ticketing systems and traffic light control, managing Linux and Windows servers, Docker containers, Oracle databases, Shell Script and Python automations, plus tools like Zabbix, GitLab, Kafka, among others.",
-                "about-p3": "Graduated in Computer Networks Technology from SENAI FATESG, I also have certifications such as DevOps Essentials Professional Certificate (DEPC) and Oracle Cloud Infrastructure Foundations Associate. Currently studying for Oracle, AWS and Kubernetes certifications.",
+                "resume-title": "Professional Summary",
+                "resume-p1": "Infrastructure and DevOps professional with 10 years of experience in Linux/Windows systems administration, monitoring, automation and critical environments maintenance. Specialized in SRE (Site Reliability Engineering) practices with focus on high availability, scalability and system resilience.",
+                "resume-p2": "Notable performance in high complexity environments, including electronic ticketing systems and traffic light control, with expertise in technologies such as Docker, Zabbix, GitLab CI/CD, Oracle DB and automations with Shell Script and Python. Experience in distributed systems and microservices architecture.",
+                "resume-p3": "Certified in Oracle Cloud Infrastructure and DevOps Essentials, with knowledge in Kubernetes, AWS and agile methodologies. Proactive profile, with strong analytical skills for complex problem solving and continuous process improvement.",
                 "skills-title": "Key Skills",
-                "skill-1": "Linux | Windows Server | Networks",
-                "skill-2": "Docker | Git | GitLab CI/CD",
-                "skill-3": "Zabbix | Grafana | Apache | Nginx",
-                "skill-4": "Shell Script | Python | PL/SQL",
-                "skill-5": "Oracle DB | RESTful API | Kafka",
-                "skill-6": "Kanban | Scrum | Technical Documentation",
+                "skill-1": "Linux/Windows Server Administration",
+                "skill-2": "Monitoring (Zabbix, Grafana, Prometheus)",
+                "skill-3": "Containerization & Orchestration (Docker, Kubernetes)",
+                "skill-4": "Automation (Shell Script, Python, Ansible)",
+                "skill-5": "CI/CD (GitLab, GitHub Actions)",
+                "skill-6": "Databases (Oracle, PostgreSQL, MySQL)",
+                "skill-7": "SRE and DevOps Practices",
+                "skill-8": "Infrastructure as Code (Terraform)",
                 "experience-title": "Professional Experience",
                 "education-title": "Education",
                 "languages-title": "Languages",
                 "certifications-title": "Courses and Certifications",
-                "studying-title": "Currently studying for",
-                "job1-title": "Infrastructure and Support Analyst - Mid-Level – Dataprom (May/2025 – Present)",
-                "job1-desc": "Administration of Linux and Windows Server in multiple versions; analysis, monitoring and correction of production incidents; implementation of automations with Bash Script and Python; support to development teams and SRE practices; data extraction in Oracle; monitoring with Zabbix.",
-                "job2-title": "Infrastructure and Support Analyst - Junior – Dataprom (Feb/2022 – Apr/2025)",
-                "job2-desc": "Linux and Windows server management in corporate environment; backup execution; technical support; performance analysis and incident monitoring; technical documentation elaboration.",
-                "job3-title": "Support and Infrastructure Analyst II – Oobj (Dec/2020 – Feb/2022)",
-                "job3-desc": "Support for Windows and Linux environments, monitoring with Zabbix and Grafana, integration with RESTful APIs for ERPs, technical guidance to new employees, technical documentation.",
-                "job4-title": "IT Infrastructure Analyst – Aviso Urgente (Apr/2018 – Dec/2020)",
-                "job4-desc": "Administration of Windows Server and Linux servers; local and cloud network administration; monitoring with Zabbix and Grafana; security configuration, Google Workspace; support to development teams.",
-                "job5-title": "IT Assistant – Grupo empZ (Feb/2016 – Mar/2018)",
-                "job5-desc": "N1 and N2 support, Windows server administration (AD, DNS, DHCP, GPO), monitoring with Zabbix and UniFi, Protheus ERP and McAfee ePO antivirus administration, technical documentation.",
-                "job6-title": "Network Implementation Intern – Telemont (Mar/2014 – Dec/2015)",
-                "job6-desc": "Support in structured network installation and maintenance; technical documentation; basic hardware and software support; inventory update; face-to-face customer service.",
-                "job7-title": "Technical Support Analyst – Tahto (Mar/2012 – Jan/2014)",
-                "job7-desc": "Customer support for internet and telephony; network services configuration, modems and routers; troubleshooting analysis in ticket system; remote support and script development.",
+                "responsibilities-title": "Responsibilities:",
+                "technologies-title": "Technologies Used:",
+                "job1-title": "Infrastructure and Support Analyst - Mid-Level – Dataprom (02/2022 – Present)",
+                "job1-resp1": "Administration of Linux and Windows Server in multiple versions",
+                "job1-resp2": "Infrastructure monitoring with Zabbix and Grafana",
+                "job1-resp3": "Creation of PL/SQL scripts for data extraction in Oracle databases",
+                "job1-resp4": "Implementation of automations with Bash, Python and PowerShell scripts",
+                "job1-resp5": "Support for NGINX load balancers and Jetty, Apache and IIS web servers",
+                "job1-resp6": "Backup execution using Bacula Admin Tools",
+                "job1-resp7": "API performance tests using Postman in PROD and HOM environments",
+                "job1-resp8": "Monitoring of cloud servers on OCI (Oracle Cloud Infrastructure) platform",
+                "job1-resp9": "Change Management (GMUD), including customer contact for deployment scheduling",
+                "job1-resp10": "Support for development teams and implementation of SRE practices",
+                "job2-title": "Support and Infrastructure Analyst II – Oobj (12/2020 – 02/2022)",
+                "job2-resp1": "Infrastructure monitoring with Zabbix and Grafana",
+                "job2-resp2": "Administration of Windows Server and Linux servers with tax document issuance engines",
+                "job2-resp3": "API performance tests using Postman for PROD and HOM environments",
+                "job2-resp4": "Creation of PL/SQL scripts for data extraction in PostgreSQL and Oracle databases",
+                "job2-resp5": "Support for application development teams in product updates",
+                "job2-resp6": "Change Management (GMUD), including customer contact for deployment scheduling",
+                "job3-title": "IT Infrastructure Analyst – Aviso Urgente (04/2018 – 12/2020)",
+                "job3-resp1": "Administration of Windows Server 2008/2012 R2 and Linux servers",
+                "job3-resp2": "Installation, update and configuration of software and security patches on Windows/Linux",
+                "job3-resp3": "Management of local and AWS cloud networks and infrastructure",
+                "job3-resp4": "Infrastructure monitoring with Zabbix and Grafana",
+                "job3-resp5": "Administration of Google Workspace platform and Virtual PBX",
+                "job3-resp6": "Configuration and maintenance of network security (Firewall, Proxy)",
+                "job3-resp7": "Management of McAfee Antivirus and Zimbra email server",
+                "job4-title": "IT Support Analyst – Grupo empZ (06/2016 – 03/2018)",
+                "job4-resp1": "Server administration and monitoring with Zabbix and Grafana",
+                "job4-resp2": "Installation, update and configuration of software and security patches on Windows/Linux",
+                "job4-resp3": "Diagnosis, installation and maintenance of computers and IT equipment",
+                "job4-resp4": "Configuration of access and permissions in corporate systems: email, chat, ERPs",
+                "job4-resp5": "Specialized support for local and remote users in group units",
+                "job4-resp6": "Assistance in infrastructure projects and technological improvements",
+                "job5-title": "Implementation Assistant – Telemont (03/2014 – 12/2015)",
+                "job5-resp1": "Support in installation and maintenance of structured GPON networks",
+                "job5-resp2": "Design of fiber optic network projects in AutoCAD",
+                "job5-resp3": "Basic technical support in hardware and software",
+                "job5-resp4": "Technical documentation of implementation processes",
+                "job5-resp5": "Update of network equipment inventory",
+                "job6-title": "Technical Support Agent – Tahto(03/2012 – 01/2014)",
+                "job6-resp1": "Direct support to end users focused on connectivity and residential/corporate services",
+                "job6-resp2": "Remote diagnosis (troubleshooting) of internet and network problems (Wi-Fi, cable, modem)",
+                "job6-resp3": "Installation and configuration of certified modems and routers",
+                "job6-resp4": "Support in access provider settings, DNS and PPPoE authentication",
+                "job6-resp5": "Service order opening / technical routing for on-site support",
                 "theme-dark": "🌙 Dark Mode",
                 "theme-light": "☀️ Light Mode"
             },
@@ -662,36 +1110,70 @@
                 linkedin: "LinkedIn",
                 email: "Email",
                 phone: "Teléfono",
-                "about-title": "Sobre mí",
-                "about-p1": "Soy un profesional de tecnología con 10 años de experiencia en TI, redes y soporte técnico, trabajando con enfoque en entornos Linux, monitoreo, automatización y mantenimiento de sistemas críticos. Tengo experiencia en empresas de tecnología, movilidad urbana y software jurídico, apoyando tanto la operación como la evolución de la infraestructura.",
-                "about-p2": "Actualmente trabajo con soporte y monitoreo de sistemas de billetaje electrónico y control semafórico, administrando servidores Linux y Windows, contenedores Docker, bases de datos Oracle, automatizaciones en Shell Script y Python, además de herramientas como Zabbix, GitLab, Kafka, entre otras.",
-                "about-p3": "Graduado en Tecnología en Redes de Computadores por SENAI FATESG, también poseo certificaciones como DevOps Essentials Professional Certificate (DEPC) y Oracle Cloud Infrastructure Foundations Associate. Actualmente estudiando para certificaciones Oracle, AWS y Kubernetes.",
+                "resume-title": "Resumen Profesional",
+                "resume-p1": "Profesional de Infraestructura y DevOps con 10 años de experiencia en administración de sistemas Linux/Windows, monitoreo, automatización y mantenimiento de entornos críticos. Especializado en prácticas SRE (Site Reliability Engineering) con enfoque en alta disponibilidad, escalabilidad y resiliencia de sistemas.",
+                "resume-p2": "Desempeño destacado en entornos de alta complejidad, incluyendo sistemas de billetaje electrónico y control semafórico, con dominio en tecnologías como Docker, Zabbix, GitLab CI/CD, Oracle DB y automatizaciones con Shell Script y Python. Experiencia en arquitectura de sistemas distribuidos y microservicios.",
+                "resume-p3": "Certificado en Oracle Cloud Infrastructure y DevOps Essentials, con conocimientos en Kubernetes, AWS y metodologías ágiles. Perfil proactivo, con fuerte capacidad analítica para resolución de problemas complejos y mejora continua de procesos.",
                 "skills-title": "Principales Competencias",
-                "skill-1": "Linux | Windows Server | Redes",
-                "skill-2": "Docker | Git | GitLab CI/CD",
-                "skill-3": "Zabbix | Grafana | Apache | Nginx",
-                "skill-4": "Shell Script | Python | PL/SQL",
-                "skill-5": "Oracle DB | API RESTful | Kafka",
-                "skill-6": "Kanban | Scrum | Documentación técnica",
+                "skill-1": "Administración de Sistemas Linux/Windows Server",
+                "skill-2": "Monitoreo (Zabbix, Grafana, Prometheus)",
+                "skill-3": "Contenedores y Orquestación (Docker, Kubernetes)",
+                "skill-4": "Automatización (Shell Script, Python, Ansible)",
+                "skill-5": "CI/CD (GitLab, GitHub Actions)",
+                "skill-6": "Bases de Datos (Oracle, PostgreSQL, MySQL)",
+                "skill-7": "Prácticas SRE y DevOps",
+                "skill-8": "Infraestructura como Código (Terraform)",
                 "experience-title": "Experiencia Profesional",
                 "education-title": "Formación Académica",
                 "languages-title": "Idiomas",
                 "certifications-title": "Cursos y Certificaciones",
-                "studying-title": "Estudiando para",
-                "job1-title": "Analista de Infraestructura y Soporte Pleno – Dataprom (may/2025 – presente)",
-                "job1-desc": "Administración de servidores Linux y Windows Server en múltiples versiones; análisis, monitoreo y corrección de incidentes en producción; implementación de automatizaciones con Bash Script y Python; soporte a equipos de desarrollo y prácticas SRE; extracción de datos en Oracle; monitoreo con Zabbix.",
-                "job2-title": "Analista de Infraestructura y Soporte Júnior – Dataprom (feb/2022 – abr/2025)",
-                "job2-desc": "Gestión de servidores Linux y Windows en ambiente corporativo; ejecución de respaldos; soporte técnico; análisis de rendimiento e incidentes con monitoreo; elaboración de documentación.",
-                "job3-title": "Analista de Soporte e Infraestructura II – Oobj (dic/2020 – feb/2022)",
-                "job3-desc": "Soporte a entornos Windows y Linux, monitoreo con Zabbix e Grafana, integración con APIs RESTful para ERPs, orientación técnica a nuevos colaboradores, documentación técnica.",
-                "job4-title": "Analista de Infraestrutura de TI – Aviso Urgente (abr/2018 – dic/2020)",
-                "job4-desc": "Administración de servidores Windows Server e Linux; administração de redes locais e cloud; monitoramento com Zabbix e Grafana; configuração de segurança, Google Workspace; suporte a equipes de desenvolvimento.",
-                "job5-title": "Asistente de TI – Grupo empZ (fev/2016 – mar/2018)",
-                "job5-desc": "Suporte N1 e N2, administração de servidores Windows (AD, DNS, DHCP, GPO), monitoramento com Zabbix e UniFi, administração do ERP Protheus e antivírus McAfee ePO, documentação técnica.",
-                "job6-title": "Pasante de Implementación de Redes – Telemont (mar/2014 – dic/2015)",
-                "job6-desc": "Apoyo en instalación y mantenimiento de redes estructuradas; documentación técnica; soporte básico en hardware e software; actualización de inventario; atención presencial.",
-                "job7-title": "Analista de Suporte Técnico – Tahto (mar/2012 – ene/2014)",
-                "job7-desc": "Suporte a clientes em internet y telefonía; configuración de serviços de rede, módems y routers; análisis de problemas em sistema de tickets; suporte remoto e elaboración de scripts.",
+                "responsibilities-title": "Responsabilidades:",
+                "technologies-title": "Tecnologías Utilizadas:",
+                "job1-title": "Analista de Infraestructura y Soporte Pleno – Dataprom (02/2022 – presente)",
+                "job1-resp1": "Administración de servidores Linux y Windows Server en múltiples versiones",
+                "job1-resp2": "Monitoreo de infraestructura con Zabbix y Grafana",
+                "job1-resp3": "Creación de scripts PL/SQL para extracción de datos en bancos Oracle",
+                "job1-resp4": "Implementación de automatizaciones con scripts Bash, Python y PowerShell",
+                "job1-resp5": "Soporte a balanceadores de carga NGINX y servidores web Jetty, Apache e IIS",
+                "job1-resp6": "Ejecución de backups utilizando Bacula Admin Tools",
+                "job1-resp7": "Pruebas de performance en APIs utilizando Postman en ambientes PROD y HOM",
+                "job1-resp8": "Seguimiento de servidores en nube en la plataforma OCI (Oracle Cloud Infrastructure)",
+                "job1-resp9": "Gestión de Cambios (GMUD), incluyendo contacto con clientes para agendamiento de deploys",
+                "job1-resp10": "Soporte a equipos de desarrollo e implementación de prácticas SRE",
+                "job2-title": "Analista de Soporte e Infraestructura II – Oobj (12/2020 – 02/2022)",
+                "job2-resp1": "Monitoreo de infraestructura con Zabbix y Grafana",
+                "job2-resp2": "Administración de servidores Windows Server y Linux con motores de emisión de documentos fiscales",
+                "job2-resp3": "Pruebas de performance en APIs utilizando Postman para ambientes PROD y HOM",
+                "job2-resp4": "Creación de scripts PL/SQL para extracción de datos en bancos PostgreSQL y Oracle",
+                "job2-resp5": "Soporte a equipos de desarrollo de aplicaciones en actualizaciones del producto",
+                "job2-resp6": "Gestión de Cambios (GMUD), incluyendo contacto con clientes para agendamiento de deploys",
+                "job3-title": "Analista de Infraestructura de TI – Aviso Urgente (04/2018 – 12/2020)",
+                "job3-resp1": "Administración de servidores Windows Server 2008/2012 R2 y Linux",
+                "job3-resp2": "Instalación, actualización y configuración de softwares y parches de seguridad en Windows/Linux",
+                "job3-resp3": "Gestión de redes e infraestructura local y en nube AWS",
+                "job3-resp4": "Monitoreo de infraestructura con Zabbix y Grafana",
+                "job3-resp5": "Administración de la plataforma Google Workspace y PABX Virtual",
+                "job3-resp6": "Configuración y mantenimiento de seguridad de red (Firewall, Proxy)",
+                "job3-resp7": "Gestión del Antivirus McAfee y del servidor de email Zimbra",
+                "job4-title": "Analista de Soporte de TI – Grupo empZ (06/2016 – 03/2018)",
+                "job4-resp1": "Administración y monitoreo de servidores con Zabbix y Grafana",
+                "job4-resp2": "Instalación, actualización y configuración de softwares y parches de seguridad en Windows/Linux",
+                "job4-resp3": "Diagnóstico, instalación y mantenimiento de computadoras y equipos de TI",
+                "job4-resp4": "Configuración de accesos y permisos en sistemas corporativos: email, chat, ERPs",
+                "job4-resp5": "Soporte especializado a usuarios locales y remotos en las unidades del grupo",
+                "job4-resp6": "Ayuda en proyectos de infraestructura y mejoras tecnológicas",
+                "job5-title": "Asistente de Implementación – Telemont (03/2014 – 12/2015)",
+                "job5-resp1": "Apoyo en instalación y mantenimiento de redes estructuradas GPON",
+                "job5-resp2": "Diseño de proyectos de redes de fibra óptica en AutoCAD",
+                "job5-resp3": "Soporte técnico básico en hardware y software",
+                "job5-resp4": "Documentación técnica de los procesos de implementación",
+                "job5-resp5": "Actualización del inventario de equipos de red",
+                "job6-title": "Agente de Soporte Técnico – Tahto(03/2012 – 01/2014)",
+                "job6-resp1": "Atención directa al usuario final con foco en conectividad y servicios residenciales y corporativos",
+                "job6-resp2": "Diagnóstico remoto (troubleshooting) de problemas de internet y red (Wi-Fi, cable, módem)",
+                "job6-resp3": "Instalación y configuración de módems y routers homologados",
+                "job6-resp4": "Soporte en configuraciones de proveedores de acceso, DNS y autenticación PPPoE",
+                "job6-resp5": "Apertura de OS / direccionamiento técnico para atención presencial",
                 "theme-dark": "🌙 Modo Oscuro",
                 "theme-light": "☀️ Modo Claro"
             }
@@ -746,6 +1228,28 @@
             localStorage.setItem('language', lang);
             updateThemeText();
         }
+
+        // Funções para controlar os modais
+        function openModal(jobId) {
+            const modal = document.getElementById(jobId);
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Impede rolagem da página
+        }
+
+        function closeModal() {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.classList.remove('show');
+            });
+            document.body.style.overflow = 'auto'; // Restaura rolagem da página
+        }
+
+        // Fechar modal ao clicar fora do conteúdo
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal();
+            }
+        });
 
         // Event listeners
         themeToggle.addEventListener('click', () => {
